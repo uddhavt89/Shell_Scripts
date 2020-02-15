@@ -1,0 +1,9 @@
+echo abc|sed 's/[a-z]*/(&)/'
+
+echo "123 abc" | sed 's/[0-9]*/& &/'
+
+cnt=0; while [[ $cnt -lt 9 ]]; do echo -e "insert_job: Test_jobs_$cnt\njob_type: c\ncommand: sleep 10\nowner: autotest\nmachine: localhost\n"; cnt=$(( $cnt + 1));done > out_put.log
+
+sed 'N;s/\n//' another_test_file.log|awk '{print $2, $1}'
+
+sed -n '/insert_job: autosys-/,/\$/p' autosys_jobs_def.jil|egrep "insert_job|owner"|awk '{print $2}'|sed 'N;s/\n/ /'|awk '{print $2, $1}'
